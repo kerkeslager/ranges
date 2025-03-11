@@ -1,0 +1,76 @@
+<!doctype html>
+
+<html>
+  <head>
+    <style>
+      html {
+        font-family: Menlo, monospace;
+      }
+
+      table {
+        border-collapse: collapse;
+
+        & td {
+          box-sizing: border-box;
+          border: 1px solid black;
+          height: 2.4rem;
+          width: 2.4rem;
+          color: white;
+          padding: 0;
+          vertical-align: middle;
+
+          & > div {
+            background: darkgrey;
+            height: 100%;
+            width: 100%;
+            display: block;
+            position: relative;
+
+            & .bar {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+            }
+
+            & .name {
+              display: flex;
+              position: relative;
+              background: transparent;
+              z-index: 1;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <table>
+      % for i in range(len(RANKS)):
+        <tr>
+          % for j in range(len(RANKS)):
+            <td>
+              <div>
+                % if i < j:
+                  % combo = RANKS[i] + RANKS[j] + 's'
+                % elif i > j:
+                  % combo = RANKS[j] + RANKS[i] + 'o'
+                % else:
+                  % combo = RANKS[i] + RANKS[j]
+                % end 
+
+                <div class='bar' style='height: {{ (7 - _range.get(combo, 7)) * 100 / 6 }}%; background: red;'></div>
+                <div class='name'>{{ combo }}</div>
+              </div>
+            </td>
+          % end
+        </tr>
+      % end
+    </table>
+  </body>
+</html>

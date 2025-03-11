@@ -1,0 +1,14 @@
+<!doctype html>
+
+<html>
+  <head>
+  </head>
+
+  <body>
+    <ul>
+      % for r in ranges:
+        <li><a href='/r/{{ r[:-5] }}'>{{ r[:-5] }}</a></li>
+      % end
+    </ul>
+  </body>
+</html>
